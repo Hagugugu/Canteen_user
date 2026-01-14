@@ -14,11 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   menuItems.forEach(item => {
     const div = document.createElement("div");
-    div.className = "item";
 
     const btn = document.createElement("button");
     btn.innerText = "Add";
-    btn.disabled = !item.available;
+    btn.disabled = !item.available;   // ✅ FIXED
 
     btn.onclick = () => {
       const p = document.createElement("p");
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       totalSpan.innerText = total;
     };
 
-    div.innerHTML = `<strong>${item.name}</strong> - ₹${item.price}`;
+    div.innerHTML = `<strong>${item.name}</strong> - ₹${item.price} `;
     div.appendChild(btn);
     menuDiv.appendChild(div);
   });
