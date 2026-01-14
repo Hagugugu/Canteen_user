@@ -7,9 +7,38 @@ const menuItems = [
 
 const menuDiv = document.getElementById("menu");
 
+let total = 0;
+const cart = document.getElementById("cart");
+const totalSpan = document.getElementById("total");
+
 menuItems.forEach(item => {
   const div = document.createElement("div");
   div.className = "menu-item";
+
+  const button = document.createElement("button");
+  button.textContent = "Add";
+  button.disabled = !item.available;
+
+  button.onclick = () => {
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - ₹${item.price}`;
+    cart.appendChild(li);
+
+    total += item.price;
+    totalSpan.textContent = total;
+  };
+
+  div.innerHTML = `
+    <h3>${item.name}</h3>
+    <p>Price: ₹${item.price}</p>
+    <p class="${item.available ? 'available' : 'not-available'}">
+      ${item.available ? 'Available' : 'Out of Stock'}
+    </p>
+  `;
+
+  div.appendChild(button);
+  menuDiv.appendChild(div);
+});
 
   div.innerHTML = `
     <h3>${item.name}</h3>
