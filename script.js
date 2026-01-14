@@ -1,61 +1,36 @@
+document.addEventListener("DOMContentLoaded", function () {
 
+  const menuItems = [
+    { name: "Samosa", price: 15, available: true },
+    { name: "Tea", price: 10, available: true },
+    { name: "Burger", price: 40, available: false }
+  ];
 
+  const menuDiv = document.getElementById("menu");
+  const cartDiv = document.getElementById("cart");
+  const totalSpan = document.getElementById("total");
 
-const menuItems = [
-  { name: "Samosa", price: 15, available: true },
-  { name: "Tea", price: 10, available: true },
-  { name: "Burger", price: 40, available: false }
-];
+  let total = 0;
 
-const menuDiv = document.getElementById("menu");const menuItems = [
-  { name: "Veg Sandwich", price: 30, available: true },
-  { name: "Samosa", price: 15, available: true },
-  { name: "Burger", price: 50, available: false },
-  { name: "Tea", price: 10, available: true }
-];
+  menuItems.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "item";
 
-const menuDiv = document.getElementById("menu");
+    const btn = document.createElement("button");
+    btn.innerText = "Add";
+    btn.disabled = !item.available;
 
-let total = 0;
-const cart = document.getElementById("cart");
-const totalSpan = document.getElementById("total");
+    btn.onclick = () => {
+      const p = document.createElement("p");
+      p.innerText = `${item.name} - ₹${item.price}`;
+      cartDiv.appendChild(p);
+      total += item.price;
+      totalSpan.innerText = total;
+    };
 
-menuItems.forEach(item => { 
-  const div = document.createElement("div");
-  div.className = "menu-item";
+    div.innerHTML = `<strong>${item.name}</strong> - ₹${item.price}`;
+    div.appendChild(btn);
+    menuDiv.appendChild(div);
+  });
 
-  const button = document.createElement("button");
-  button.textContent = "Add";
-  button.disabled = !item.available;
-
-  button.onclick = () => {
-    const li = document.createElement("li");
-    li.textContent = `${item.name} - ₹${item.price}`;
-    cart.appendChild(li);
-
-    total += item.price;
-    totalSpan.textContent = total;
-  };
-
-  div.innerHTML = `
-    <h3>${item.name}</h3>
-    <p>Price: ₹${item.price}</p>
-    <p class="${item.available ? 'available' : 'not-available'}">
-      ${item.available ? 'Available' : 'Out of Stock'}
-    </p>
-  `;
-
-  div.appendChild(button);
-  menuDiv.appendChild(div);
-});
-
-  div.innerHTML = `
-    <h3>${item.name}</h3>
-    <p>Price: ₹${item.price}</p>
-    <p class="${item.available ? 'available' : 'not-available'}">
-      ${item.available ? 'Available' : 'Out of Stock'}
-    </p>
-  `;
-
-  menuDiv.appendChild(div);
 });
