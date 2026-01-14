@@ -1,4 +1,13 @@
+
+
+
 const menuItems = [
+  { name: "Samosa", price: 15, available: true },
+  { name: "Tea", price: 10, available: true },
+  { name: "Burger", price: 40, available: false }
+];
+
+const menuDiv = document.getElementById("menu");const menuItems = [
   { name: "Veg Sandwich", price: 30, available: true },
   { name: "Samosa", price: 15, available: true },
   { name: "Burger", price: 50, available: false },
@@ -11,7 +20,7 @@ let total = 0;
 const cart = document.getElementById("cart");
 const totalSpan = document.getElementById("total");
 
-menuItems.forEach(item => {
+menuItems.forEach(item => { 
   const div = document.createElement("div");
   div.className = "menu-item";
 
